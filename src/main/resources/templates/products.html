@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Inventory System</title>
+
+
+          <style>
+          body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+}
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 3px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.edit-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #0b7dda;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+          </style>
+</head>
+
+
+<body>
+
+    <h1>Inventory Management System</h1>
+
+    <form action="/products" method="post">
+
+        <input type="text"
+               name="name"
+               placeholder="Product Name">
+
+        <input type="number"
+               name="price"
+               placeholder="Price">
+
+        <input type="number"
+               name="quantity"
+               placeholder="Quantity">
+
+        <button type="submit">
+            Add Product
+        </button>
+
+    </form>
+
+    <h2>Product List</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="product : ${products}">
+
+            <td th:text="${product.id}"></td>
+
+            <td th:text="${product.name}"></td>
+
+            <td th:text="${product.price}"></td>
+
+            <td th:text="${product.quantity}"></td>
+
+            <td>
+             <button class="edit-btn"><a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a></button>
+                <button class="del-btn"><a th:href="@{/products/delete/{id}(id=${product.id})}"> Delete </a></button>
+            </td>
+
+        </tr>
+
+    </table>
+
+</body>
+</html>

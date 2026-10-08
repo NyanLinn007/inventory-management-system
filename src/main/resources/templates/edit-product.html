@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Product</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Edit Product</h1>
+
+    <form th:action="@{/products/update}" method="post">
+
+        <input type="hidden"
+               name="id"
+               th:value="${product.id}">
+
+        <input type="text"
+               name="name"
+               th:value="${product.name}"
+               placeholder="Product Name"
+               required>
+
+        <input type="number"
+               name="price"
+               th:value="${product.price}"
+               placeholder="Price"
+               step="0.01"
+               required>
+
+        <input type="number"
+               name="quantity"
+               th:value="${product.quantity}"
+               placeholder="Quantity"
+               required>
+
+        <button type="submit">
+            Update Product
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/products">
+        Back to Product List
+    </a>
+
+</body>
+
+</html>
